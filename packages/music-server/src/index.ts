@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server';
-import { typeDefs, resolvers } from './schema';
+import { typeDefs } from './typeDefs';
+import { resolvers } from './resolvers';
 
 // Create Sever Instance
 const server = new ApolloServer({ typeDefs, resolvers });
