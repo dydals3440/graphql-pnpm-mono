@@ -10,6 +10,15 @@ importers:
 
   packages/music-client:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.62.7
+        version: 5.62.7(react@18.3.1)
+      graphql:
+        specifier: ^16.9.0
+        version: 16.9.0
+      graphql-request:
+        specifier: ^7.1.2
+        version: 7.1.2(graphql@16.9.0)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -677,6 +686,14 @@ packages:
     resolution: {integrity: sha512-ZvK2jBafvttJjoIdKm/Q/Bh7IJ1Ose9IBOwpOXcOvW3ikGTQGmKDgxTC6oCAzW6PynbkKP8+um1du81XJHZ0JA==}
     cpu: [x64]
     os: [win32]
+
+  '@tanstack/query-core@5.62.7':
+    resolution: {integrity: sha512-fgpfmwatsrUal6V+8EC2cxZIQVl9xvL7qYa03gsdsCy985UTUlS4N+/3hCzwR0PclYDqisca2AqR1BVgJGpUDA==}
+
+  '@tanstack/react-query@5.62.7':
+    resolution: {integrity: sha512-+xCtP4UAFDTlRTYyEjLx0sRtWyr5GIk7TZjZwBu4YaNahi3Rt2oMyRqfpfVrtwsqY2sayP4iXVCwmC+ZqqFmuw==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@tootallnate/once@1.1.2':
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -1416,6 +1433,11 @@ packages:
 
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
+
+  graphql-request@7.1.2:
+    resolution: {integrity: sha512-+XE3iuC55C2di5ZUrB4pjgwe+nIQBuXVIK9J98wrVwojzDW3GMdSBZfxUk8l4j9TieIpjpggclxhNEU9ebGF8w==}
+    peerDependencies:
+      graphql: 14 - 16
 
   graphql-tag@2.12.6:
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
@@ -2963,6 +2985,13 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.28.1':
     optional: true
 
+  '@tanstack/query-core@5.62.7': {}
+
+  '@tanstack/react-query@5.62.7(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.62.7
+      react: 18.3.1
+
   '@tootallnate/once@1.1.2':
     optional: true
 
@@ -3891,6 +3920,11 @@ snapshots:
     optional: true
 
   graphemer@1.4.0: {}
+
+  graphql-request@7.1.2(graphql@16.9.0):
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.9.0)
+      graphql: 16.9.0
 
   graphql-tag@2.12.6(graphql@16.9.0):
     dependencies:
