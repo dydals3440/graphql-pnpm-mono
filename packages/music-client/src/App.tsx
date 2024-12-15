@@ -7,6 +7,7 @@ import PlayerWrapper from './presentationals/player/PlayerWrapper';
 import SliderPanel from './presentationals/common/SliderPanel';
 import { useState } from 'react';
 import SectionPanel from './presentationals/home/SectionPanel';
+import AudioContainer from './containers/player/AudioContainer';
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,9 @@ function App() {
           <div className='w-[300px]'>재생목록</div>
         </SliderPanel>
       </RootLayout>
-      <PlayerWrapper />
+      <PlayerWrapper>
+        <AudioContainer src='/audio/audio.mp3' />
+      </PlayerWrapper>
     </QueryClientProvider>
   );
 }
