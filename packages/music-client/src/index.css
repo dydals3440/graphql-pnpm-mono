@@ -6,6 +6,8 @@ body {
   margin: 0;
   display: flex;
   min-height: 100vh;
+  color: white;
+  /* @apply text-white; */
 }
 
 #root {

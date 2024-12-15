@@ -5,16 +5,27 @@ import ErrorFallback from './presentationals/common/ErrorFallback';
 import RootLayout from './presentationals/common/RootLayout';
 import PlayerWrapper from './presentationals/player/PlayerWrapper';
 import SongCard from './presentationals/common/SongCard';
+import SliderPanel from './presentationals/common/SliderPanel';
+import { useState } from 'react';
 
 const queryClient = new QueryClient();
 
 function App() {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <QueryClientProvider client={queryClient}>
       <RootLayout>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <TempComponent />
         </ErrorBoundary>
+        <button onClick={handleOpen}>Open</button>
+        <SliderPanel open={open} onClose={handleClose}>
+          <div className='w-[300px]'>재생목록</div>
+        </SliderPanel>
       </RootLayout>
       <PlayerWrapper />
     </QueryClientProvider>
