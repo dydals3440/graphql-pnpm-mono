@@ -27,10 +27,10 @@ function App() {
         <SliderPanel open={open} onClose={handleClose}>
           <div className='w-[300px]'>재생목록</div>
         </SliderPanel>
+        <PlayerWrapper>
+          <AudioContainer src='/audio/audio.mp3' />
+        </PlayerWrapper>
       </RootLayout>
-      <PlayerWrapper>
-        <AudioContainer src='/audio/audio.mp3' />
-      </PlayerWrapper>
     </QueryClientProvider>
   );
 }

@@ -21,7 +21,7 @@ export default function SectionPanel({
         </a>
       </Section.Title>
       <Section.Content>
-        <div className='flex gap-x-18'>
+        <div className='flex'>
           {songs?.map((song) => (
             // 카드 사이즈가 줄어듬
             // song card의, 너비가 parents에 맞게 구성이되면서, 카드 자체가 줄어듬. 카드 영역에 shrink-0 추가. 카드 컴포넌트가 줄어들지 않도록 함.
