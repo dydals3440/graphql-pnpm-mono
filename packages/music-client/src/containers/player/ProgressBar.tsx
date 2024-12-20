@@ -18,9 +18,6 @@ export default function ProgressBar({
     onChange(seconds);
   };
 
-  console.log(formatTime(duration), '듀듀');
-  console.log(formatTime(currentTime), '커커');
-
   return (
     <div className='flex items-center gap-x-17'>
       <span>{formatTime(currentTime)}</span>

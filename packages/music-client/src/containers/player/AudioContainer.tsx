@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar';
 import VolumeController from './VolumeController';
 
 interface IAudioContainer {
-  src: string;
+  src?: string;
 }
 
 export default function AudioContainer({ src }: IAudioContainer) {

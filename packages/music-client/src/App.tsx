@@ -5,17 +5,31 @@ import ErrorFallback from './presentationals/common/ErrorFallback';
 import RootLayout from './presentationals/common/RootLayout';
 import PlayerWrapper from './presentationals/player/PlayerWrapper';
 import SliderPanel from './presentationals/common/SliderPanel';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SectionPanel from './presentationals/home/SectionPanel';
 import AudioContainer from './containers/player/AudioContainer';
+
+import { useAppStore } from './store';
 
 const queryClient = new QueryClient();
 
 function App() {
   const [open, setOpen] = useState(false);
+  const { currentSong, setCurrentSong } = useAppStore();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // App이 로딩되었을 때 임시로 데이터를 더미로
+  useEffect(() => {
+    setCurrentSong({
+      id: 1,
+      title: 'Song 1',
+      artist: 'Artist 1',
+      genre: 'rock',
+      path: 'http://localhost:4000/audio/audio.mp3',
+    });
+  }, [setCurrentSong]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -31,7 +45,7 @@ function App() {
         </SliderPanel>
       </RootLayout>
       <PlayerWrapper>
-        <AudioContainer src='/audio/audio.mp3' />
+        <AudioContainer src={currentSong?.path} />
       </PlayerWrapper>
     </QueryClientProvider>
   );
