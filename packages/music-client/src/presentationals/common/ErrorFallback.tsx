@@ -12,7 +12,7 @@ export default function ErrorFallback({
       <h1>
         {isApiError(error)
           ? error.response.errors[0].message
-          : 'something is wrong'}
+          : '알 수 없는 문제가 발생했습니다.'}
       </h1>
       <button onClick={() => resetErrorBoundary()}>Try Again</button>
     </div>

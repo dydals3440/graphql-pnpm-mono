@@ -20,17 +20,19 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RootLayout>
+        <button onClick={handleOpen}>Open</button>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <TempComponent />
         </ErrorBoundary>
-        <button onClick={handleOpen}>Open</button>
         <SliderPanel open={open} onClose={handleClose}>
-          <div className='w-[300px]'>재생목록</div>
+          <div className='w-[300px]'>
+            <h1>재생 목록</h1>
+          </div>
         </SliderPanel>
-        <PlayerWrapper>
-          <AudioContainer src='/audio/audio.mp3' />
-        </PlayerWrapper>
       </RootLayout>
+      <PlayerWrapper>
+        <AudioContainer src='/audio/audio.mp3' />
+      </PlayerWrapper>
     </QueryClientProvider>
   );
 }
