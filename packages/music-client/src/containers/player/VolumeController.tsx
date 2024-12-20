@@ -1,5 +1,5 @@
 import VolumeIcon from '@/assets/icons/volume.svg?react';
-import Slider from './Slider';
+import Slider from '../../presentationals/player/Slider';
 import { ChangeEvent } from 'react';
 
 interface IVolumeController {

@@ -1,6 +1,6 @@
 import { formatTime } from '@/utils/player/time';
 import { ChangeEvent } from 'react';
-import Slider from './Slider';
+import Slider from '../../presentationals/player/Slider';
 
 interface IProgressBar {
   duration: number;

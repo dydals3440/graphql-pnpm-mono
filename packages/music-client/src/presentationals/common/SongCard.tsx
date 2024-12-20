@@ -14,50 +14,42 @@ function SongCard({
   children,
   variant = 'vertical',
   className,
-}: Cn<PropsWithChildren<{ variant?: Variant }>>) {
+  onClick,
+}: Cn<PropsWithChildren<{ variant?: Variant; onClick?: () => void }>>) {
   const variantClass =
     variant === 'vertical'
       ? 'flex-col gap-y-16'
-      : 'flex-row gap-x-14 items-center';
+      : 'flex-row gap-x-14 items-center w-full';
   return (
     <SongCardContext.Provider value={{ variant }}>
       <motion.div
         whileTap='tap'
         whileHover='hover'
         initial='rest'
-        variants={
-          variant === 'vertical'
-            ? {
-                tap: { scale: 0.95 },
-                rest: { background: 'transparent' },
-                hover: { background: 'rgba(255, 255, 255, 0.1)' },
-              }
-            : {}
-        }
+        variants={{
+          hover: { background: 'rgba(255, 255, 255, 0.1)' },
+          ...(variant === 'vertical'
+            ? { tap: { scale: 0.95 }, rest: { background: 'transparent' } }
+            : {}),
+        }}
         className={tw('flex relative p-9 rounded-6', variantClass, className)}
+        onClick={onClick}
       >
         {children}
-        <motion.span
-          className='absolute right-19 top-135'
-          variants={{
-            hover: { opacity: 1, y: -10 },
-            rest: { opacity: 0, y: 0 },
-          }}
-        >
-          <PlayButton status={'paused'} onToggle={() => {}} />
-        </motion.span>
+        {variant === 'vertical' && (
+          <motion.span
+            className='absolute right-19 top-135'
+            variants={{
+              hover: { opacity: 1, y: -10 },
+              rest: { opacity: 0, y: 0 },
+            }}
+          >
+            <PlayButton status='paused' onToggle={() => {}} />
+          </motion.span>
+        )}
       </motion.div>
     </SongCardContext.Provider>
   );
-}
-
-// rounded-8이 될 것이라 생각하지만, tailwind css는 rounded-6과 8 모두 명시도가 같아, 구분 X
-// .rounded-8 { border-radius: 0.5rem; }
-// .rounded-6 { border-radius: 0.375rem; } rounded-6 이 추후에 선언되었다면, cascading 됨.
-
-{
-  /* <img className='rounded-6 rounded-8'/>
-<SongCardImage className='rounded-8'/> */
 }
 
 function SongCardImage({

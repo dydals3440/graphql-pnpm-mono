@@ -1,25 +1,17 @@
-import useOutsideClick from '@/hooks/common/useOutsideClick';
 import { PropsWithChildren } from 'react';
 import { motion } from 'framer-motion';
 
 interface ISliderPanel {
   open: boolean;
-  onClose: () => void;
 }
 
 export default function SliderPanel({
   open,
-  onClose,
   children,
 }: PropsWithChildren<ISliderPanel>) {
-  const containerRef = useOutsideClick<HTMLDivElement>(onClose);
-  if (!open) return null;
-
   // direction을 통해, 좌우 우좌 패널 구성 가능.
   return (
     <motion.div
-      // HTMLElement기에 안됨, RefObject로 DivElement로 타입 변환
-      ref={containerRef}
       initial={{ x: '100%' }}
       animate={open ? 'open' : 'closed'}
       variants={{

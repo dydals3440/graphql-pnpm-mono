@@ -28,3 +28,8 @@ interface Artist {
   name: string;
   albums: Omit<Album, 'artist'>[];
 }
+
+interface PlayList {
+  id: number;
+  songs: Song[];
+}
