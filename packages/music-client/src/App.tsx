@@ -25,8 +25,13 @@ function App() {
     setCurrentSong({
       id: 1,
       title: 'Song 1',
-      artist: 'Artist 1',
-      genre: 'rock',
+      album: {
+        id: 1,
+        title: 'Album 1',
+        artist: { id: 1, name: 'Artist 1' },
+        thumbnail: 'https://picsum.photos/200',
+      },
+      genres: [{ id: 1, name: 'rock' }],
       path: 'http://localhost:4000/audio/audio.mp3',
     });
   }, [setCurrentSong]);

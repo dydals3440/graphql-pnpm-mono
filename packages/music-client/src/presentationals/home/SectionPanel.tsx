@@ -26,13 +26,12 @@ export default function SectionPanel({
             // 카드 사이즈가 줄어듬
             // song card의, 너비가 parents에 맞게 구성이되면서, 카드 자체가 줄어듬. 카드 영역에 shrink-0 추가. 카드 컴포넌트가 줄어들지 않도록 함.
             <SongCard key={song.id} variant='vertical' className='shrink-0'>
-              <SongCard.Image
-                src={'https://via.placeholder.com/150'}
-                alt={song.title}
-              />
+              <SongCard.Image src={song.album.thumbnail} alt={song.title} />
               <SongCard.Content>
                 <SongCard.Title>{song.title}</SongCard.Title>
-                <SongCard.Description>{song.artist}</SongCard.Description>
+                <SongCard.Description>
+                  {song.album.artist.name}
+                </SongCard.Description>
               </SongCard.Content>
             </SongCard>
           ))}

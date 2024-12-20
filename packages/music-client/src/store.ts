@@ -9,7 +9,7 @@ interface Action {
   setCurrentSong: (song: Song) => void;
 }
 
-export const useAppStore = create<AppState & Action>()((set, get) => ({
+export const useAppStore = create<AppState & Action>()((set) => ({
   // state
   currentSong: null,
   // actions

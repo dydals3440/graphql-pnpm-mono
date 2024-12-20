@@ -11,6 +11,7 @@ export const typeDefs = gql`
     title: String!
     artist: Artist!
     song: [Song!]
+    thumbnail: String!
   }
   type Song {
     id: ID!
@@ -18,6 +19,7 @@ export const typeDefs = gql`
     # 초기에 장르가 등록되어야 하므로, nullable 하지 않게 설정
     genres: [Genre!]!
     album: Album!
+    path: String!
   }
   type Genre {
     id: ID!

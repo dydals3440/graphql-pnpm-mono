@@ -7,8 +7,16 @@ const GET_SONGS = gql`
     songs {
       id
       title
-      artist
-      genre
+      album {
+        artist {
+          id
+          name
+        }
+        id
+        title
+        thumbnail
+      }
+      genres
     }
   }
 `;
