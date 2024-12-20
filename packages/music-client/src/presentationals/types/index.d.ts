@@ -31,5 +31,6 @@ interface Artist {
 
 interface PlayList {
   id: number;
+  name: string;
   songs: Song[];
 }

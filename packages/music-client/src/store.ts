@@ -7,6 +7,14 @@ interface AppState {
   isPlayListExpanded: boolean;
   // playlist 관리
   playList: Song[];
+  // 좋아요
+  likedSongs: Song[];
+  //
+  playLists: {
+    id: number;
+    name: string;
+    songs: Song[];
+  }[];
 }
 
 interface Action {
@@ -14,6 +22,11 @@ interface Action {
   togglePlayList: () => void;
   addToPlayList: (song: Song) => void;
   removeFromPlayList: (song: Song) => void;
+  likeSong: (song: Song) => void;
+  unlikeSong: (song: Song) => void;
+  // 노래에 대한 이름으로 플레이리스트 설정
+  addPlayList: (song: Song) => void;
+  addSongToPlayList: (id: number, song: Song) => void;
 }
 
 export const useAppStore = create<AppState & Action>()((set) => ({
@@ -21,6 +34,8 @@ export const useAppStore = create<AppState & Action>()((set) => ({
   currentSong: null,
   isPlayListExpanded: false,
   playList: [],
+  likedSongs: [],
+  playLists: [],
   // actions
   setCurrentSong: (song: Song) => set({ currentSong: song }),
   togglePlayList: () =>
@@ -30,5 +45,26 @@ export const useAppStore = create<AppState & Action>()((set) => ({
   removeFromPlayList: (song: Song) =>
     set((state) => ({
       playList: state.playList.filter((s) => s.id !== song.id),
+    })),
+  likeSong: (song: Song) =>
+    set((state) => ({ likedSongs: [...state.likedSongs, song] })),
+  unlikeSong: (song: Song) =>
+    set((state) => ({
+      likedSongs: state.likedSongs.filter((s) => s.id !== song.id),
+    })),
+  addPlayList: (song: Song) =>
+    set((state) => ({
+      playLists: [
+        ...state.playLists,
+        { id: state.playLists.length + 1, name: song.title, songs: [song] },
+      ],
+    })),
+  addSongToPlayList: (id: number, song: Song) =>
+    set((state) => ({
+      playLists: state.playLists.map((playList) =>
+        playList.id === id
+          ? { ...playList, songs: [...playList.songs, song] }
+          : playList
+      ),
     })),
 }));
