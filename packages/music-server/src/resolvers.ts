@@ -31,7 +31,16 @@ export const resolvers = {
       }),
     mixMakers: async () =>
       prisma.mixMaker.findMany({
-        include: { songs: true },
+        include: {
+          songs: {
+            include: {
+              genres: true,
+              album: {
+                include: { artist: true },
+              },
+            },
+          },
+        },
       }),
   },
   Mutation: {

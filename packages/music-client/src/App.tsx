@@ -11,6 +11,7 @@ import AudioContainer from './containers/player/AudioContainer';
 
 import { useAppStore } from './store';
 import PlayListContainer from './containers/home/PlayListContainer';
+import MixMakerContainer from './containers/home/MixMakerContainer';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
       <RootLayout>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <TempComponent />
+          <MixMakerContainer />
         </ErrorBoundary>
         <SliderPanel open={isPlayListExpanded}>
           <PlayListContainer />
@@ -43,7 +45,7 @@ function TempComponent() {
       songs={data ?? []}
       moreLink='/'
       title='패캠을 위한 믹스 & 추천'
-      onItemClick={(song) => addToPlayList(song)}
+      onItemClick={(song) => addToPlayList([song])}
     />
   );
 }
