@@ -27,7 +27,7 @@ export default function PlayListItem({
 }: Props) {
   const [open, setOpen] = useState(false);
   return (
-    <li className='flex relative' onClick={() => onClick(song)}>
+    <div className='flex relative' onClick={() => onClick(song)}>
       <SongCard variant='horizontal'>
         {/* Sementic 하게 버튼이라고, 보여줌 */}
         <button
@@ -100,6 +100,6 @@ export default function PlayListItem({
           <SongCard.Description>{song.album.artist.name}</SongCard.Description>
         </SongCard.Content>
       </SongCard>
-    </li>
+    </div>
   );
 }
