@@ -36,6 +36,7 @@ model Song {
   genres    Genre[] @relation("SongToGenre")
   album     Album @relation(fields: [albumId], references: [id])
   albumId   Int
+  mixMakers MixMaker[] @relation("SongToMixMaker")
   createdAt DateTime @default(now())
 }
 
@@ -43,4 +44,11 @@ model Genre {
   id        Int @id @default(autoincrement())
   name      String
   songs     Song[] @relation("SongToGenre") // 중간 테이블 매핑
+}
+
+model MixMaker {
+  id          Int @id @default(autoincrement())
+  name        String
+  description String
+  songs       Song[] @relation("SongToMixMaker")
 }

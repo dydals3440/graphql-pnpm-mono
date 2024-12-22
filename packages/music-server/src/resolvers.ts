@@ -29,6 +29,10 @@ export const resolvers = {
       prisma.album.findMany({
         include: { artist: true, songs: true },
       }),
+    mixMakers: async () =>
+      prisma.mixMaker.findMany({
+        include: { songs: true },
+      }),
   },
   Mutation: {
     // 첫번째 파라미터는 root에 관한 부분
@@ -54,7 +58,8 @@ export const resolvers = {
         title,
         albumId,
         genreIds,
-      }: { title: string; albumId: string; genreIds: string[] }
+        path,
+      }: { title: string; albumId: string; genreIds: string[]; path: string }
     ) => {
       const song = await prisma.song.create({
         data: {
@@ -65,6 +70,7 @@ export const resolvers = {
           genres: {
             connect: genreIds.map((id) => ({ id: parseInt(id) })),
           },
+          path,
         },
         include: { genres: true, album: true },
       });
@@ -75,8 +81,14 @@ export const resolvers = {
       {
         title,
         artistId,
+        thumbnail,
         releaseDate,
-      }: { title: string; artistId: string; releaseDate: string }
+      }: {
+        title: string;
+        artistId: string;
+        thumbnail: string;
+        releaseDate: string;
+      }
     ) => {
       const artist = await prisma.artist.findUnique({
         where: { id: parseInt(artistId) },
@@ -92,12 +104,35 @@ export const resolvers = {
           artist: {
             connect: { id: parseInt(artistId) },
           },
+          thumbnail,
           releaseDate: new Date(releaseDate),
         },
         // create 할 떄 artist에 대한 정보를, 조회함.
         include: { artist: true },
       });
       return album;
+    },
+    addMixMaker: async (
+      _: any,
+      {
+        name,
+        description,
+        songIds,
+      }: {
+        name: string;
+        description: string;
+        songIds: string[];
+      }
+    ) => {
+      const mixMaker = await prisma.mixMaker.create({
+        data: {
+          name,
+          description,
+          songs: { connect: songIds.map((id) => ({ id: parseInt(id) })) },
+        },
+        include: { songs: true },
+      });
+      return mixMaker;
     },
   },
 };

@@ -26,6 +26,12 @@ export const typeDefs = gql`
     # nullable 되지않게 !를 붙여줌
     name: String!
   }
+  type MixMaker {
+    id: ID!
+    name: String!
+    description: String!
+    songs: [Song!]
+  }
   # 데이터베이스에서 가져요는 부분을 Query로 정의
   type Query {
     genres: [Genre!]!
@@ -37,12 +43,24 @@ export const typeDefs = gql`
     # 노래에 대한 리스트를 가져오도록 함.
     songs: [Song!]!
     albums: [Album!]!
+    mixMakers: [MixMaker!]!
   }
   # 서버에 데이터베이스를 변경해야 하는 부분을 Mutation으로 정의
   type Mutation {
     addGenre(name: String!): Genre!
     addArtist(name: String!): Artist!
-    addSong(title: String!, albumId: ID!, genreIds: [ID!]!): Song!
-    addAlbum(title: String!, artistId: ID!, releaseDate: String!): Album!
+    addSong(
+      title: String!
+      albumId: ID!
+      genreIds: [ID!]!
+      path: String!
+    ): Song!
+    addAlbum(
+      title: String!
+      artistId: ID!
+      thumbnail: String!
+      releaseDate: String!
+    ): Album!
+    addMixMaker(name: String!, description: String!, songIds: [ID!]!): MixMaker!
   }
 `;
