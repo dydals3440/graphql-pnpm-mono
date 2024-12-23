@@ -9,12 +9,14 @@ COPY package.json .
 RUN npm install
 
 # Bundle app source
-COPY tsconfig.json ./
-COPY src ./src
-COPY prisma ./prisma
-COPY .env ./
-COPY esbuild.js ./
-COPY public ./public
+COPY . .
+
+# tsconfig.json ./
+# COPY src ./src
+# COPY prisma ./prisma
+# COPY .env ./
+# COPY esbuild.js ./
+# COPY public ./public
 
 # PRISMA GENERATE
 # RUN은 빌드단계에서 실행되는 명령어
@@ -29,3 +31,8 @@ CMD ["npm", "start"]
 
 # expose port
 EXPOSE 4000
+
+# docker build -t ai-music-app:latest .       # 이미지 생성
+# docker build --no-cache -t ai-music-app:latest .  # 이미지 생성 (노 캐시)
+# 빌드시 환경변수 넘기고 싶을 떄
+# docker build --build-arg NODE_ENV=production -t ai-music-app:latest .  # 이미지 생성 (노 캐시)
