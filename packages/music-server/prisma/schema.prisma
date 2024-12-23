@@ -37,6 +37,7 @@ model Song {
   album     Album @relation(fields: [albumId], references: [id])
   albumId   Int
   mixMakers MixMaker[] @relation("SongToMixMaker")
+  tags      Tag[] @relation("SongToTags")
   createdAt DateTime @default(now())
 }
 
@@ -51,4 +52,10 @@ model MixMaker {
   name        String
   description String
   songs       Song[] @relation("SongToMixMaker")
+}
+
+model Tag {
+  id          Int @id @default(autoincrement())  
+  name        String
+  songs       Song[] @relation("SongToTags")
 }
