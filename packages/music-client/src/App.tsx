@@ -12,6 +12,7 @@ import AudioContainer from './containers/player/AudioContainer';
 import { useAppStore } from './store';
 import PlayListContainer from './containers/home/PlayListContainer';
 import MixMakerContainer from './containers/home/MixMakerContainer';
+import RecommendationsContainer from './presentationals/home/RecommendationsContainer';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <TempComponent />
           <MixMakerContainer />
+          <RecommendationsContainer />
         </ErrorBoundary>
         <SliderPanel open={isPlayListExpanded}>
           <PlayListContainer />

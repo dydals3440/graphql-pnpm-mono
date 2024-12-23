@@ -7,6 +7,7 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import cors from 'cors';
 import { expressMiddleware } from '@apollo/server/express4';
 import audioRouter from './router/audioRouter';
+import musicRouter from './router/musicRouter';
 
 async function startServer() {
   const app = express();
@@ -17,16 +18,16 @@ async function startServer() {
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
-  app.use('/audio', audioRouter);
-
   await server.start();
   app.use(
     cors({
       origin: 'http://localhost:5173',
     }),
-    express.json(),
-    expressMiddleware(server)
+    express.json()
   );
+  app.use('/audio', audioRouter);
+  app.use('/music', musicRouter);
+  app.use(expressMiddleware(server));
 
   httpServer.listen(4000, () => {
     console.log(`Server is running on http://localhost:4000`);
